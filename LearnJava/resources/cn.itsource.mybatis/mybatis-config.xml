@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- configuration根标签，表示配置相关都写该标签中 -->
+<configuration>
+    <!-- environments表示mybatis用到环境，是复数，可以配置多个。
+        default表示默认启用下面哪一个环境，必须跟下面环境的id一致
+     -->
+    <environments default="development">
+        <!-- environment标签，是具体的某一个环境。例如:开发环境、测试环境、生产环境
+            id属性表示唯一标识符，可以自定义命名，但是建议见名知意。
+         -->
+        <environment id="development">
+            <!-- transactionManager标签：事务管理器。用来决定是否开启事务
+                type的值决定是否启用事务
+                    type:JDBC(支持事务)/MANAGED(相当于不启用事务)
+            -->
+            <transactionManager type="JDBC" />
+            <!-- dataSource数据源标签，连接数据库相关配置参数
+                type表示支持的连接池，值：POOLED是mybatis自带的连接池
+             -->
+            <dataSource type="POOLED">
+                <!-- property标签，表示配置属性，有name和value组成
+                name就是属性名
+                value就是属性值
+                连接数据库四大金刚 ：写死的方式 -->
+                <property name="driver" value="com.mysql.jdbc.Driver" />
+                <!-- 注意url的value值中不要写 -->
+                <property name="url" value="jdbc:mysql://localhost:3306/java1127" />
+                <property name="username" value="root" />
+                <property name="password" value="123456" />
+            </dataSource>
+        </environment>
+
+        <!-- environment标签，是具体的某一个环境。例如:开发环境、测试环境、生产环境 -->
+        <!-- <environment id="product">
+            <transactionManager type="JDBC" />
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}" />
+                <property name="url" value="${url}" />
+                <property name="username" value="${username}" />
+                <property name="password" value="${password}" />
+            </dataSource>
+        </environment> -->
+
+        <!-- environment标签，是具体的某一个环境。例如:开发环境、测试环境、生产环境 -->
+        <!-- <environment id="test">
+            <transactionManager type="JDBC" />
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}" />
+                <property name="url" value="${url}" />
+                <property name="username" value="${username}" />
+                <property name="password" value="${password}" />
+            </dataSource>
+        </environment> -->
+
+    </environments>
+
+    <!-- mappers标签，表示指定当前需要加载哪些具体的映射xml文件
+        里面可以写多个mapper。
+     -->
+    <mappers>
+        <!-- mapper标签，具体的ORM映射文件，resource就是引用路径 -->
+        <mapper resource="cn/itsource/mybatis/stu/mapper/impl/StudentMapper.xml" />
+    </mappers>
+</configuration>
