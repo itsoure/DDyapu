@@ -40,6 +40,7 @@ public class UserController {
             System.out.println("转账成功");
         }else {
             System.out.println("转账失败");
+            System.out.println("转账失败");
         }
     }
 }
